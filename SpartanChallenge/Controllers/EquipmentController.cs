@@ -81,38 +81,11 @@ namespace SpartanChallenge.Controllers
         }
 
 
-        
-
-        /*
-        
-        // GET: api/Equipment/5
-        public IHttpActionResult Get(int searchTerm)
-        {
-            List<ListItem> queryResult = new List<ListItem>();
-
-            try
-            {
-                queryResult = ListItemCollection.FindAll(s => s.UnitId.Equals(searchTerm));
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine("Could not get search: " + e.Message);
-            }
-            
-
-            if (queryResult == null)
-            {
-                return NotFound();
-            }
-            return Ok(searchTerm);
-        }
-
-            */
-
+       
 
         
         // Post: api/Equipment
-        public IEnumerable Post([FromBody]string searchTerm)
+        public IEnumerable Post([FromBody] Search search)
         {
             List<ListItem> queryResult = new List<ListItem>();
 
@@ -161,12 +134,23 @@ namespace SpartanChallenge.Controllers
                 Console.WriteLine("File was not read successfully: " + e.Message);
             }
 
-            if (searchTerm != null)
+            if (search.sTerm != null)
             {
                 try
                 {
-                    int query = Int32.Parse(searchTerm);
-                    queryResult = ListItemCollection.FindAll(s => s.UnitId.Equals(query));
+                    int query = Int32.Parse(search.sTerm);
+                    int type = Int32.Parse(search.sType);
+
+                    if (type == 0)
+                    {
+                        queryResult = ListItemCollection.FindAll(s => s.UnitId.Equals(query));
+
+                    }
+                    else if (type == 1)
+                    {
+                        queryResult = ListItemCollection.FindAll(s => s.ItemId.Equals(query));
+
+                    }
 
                     if (queryResult.Count == 0 || queryResult == null)
                     {
@@ -178,7 +162,7 @@ namespace SpartanChallenge.Controllers
                     Console.WriteLine("Could not get search: " + e.Message);
                 }
             }
-            else if (searchTerm == null)
+            else if (search.sTerm == null)
             {
                 queryResult = ListItemCollection;
             }
@@ -186,6 +170,8 @@ namespace SpartanChallenge.Controllers
             return queryResult;
 
         }
+
+
         
 
     }

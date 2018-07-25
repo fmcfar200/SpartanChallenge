@@ -1,9 +1,13 @@
 ﻿var currentList = {};
 var searchList = {};
 
+var searchType;
 
 $(document).ready(function () {
     console.info("ready")
+
+    searchType = 0;
+    selectSearchType(searchType);
 
     $.ajax({
         type: "GET",
@@ -30,6 +34,34 @@ $(document).ready(function () {
      })
 });
 
+function selectSearchType(type)
+{
+    var unitButton = $("#btnUnitNoId");
+    var typeButton = $("#btnTypeId");
+
+    switch(type)
+    {
+        case 0:
+            unitButton.css('background-color', 'red');
+            typeButton.css('background-color', 'white');
+            searchType = 0;
+
+            console.info(searchType);
+            break;
+
+        case 1:
+            unitButton.css('background-color', 'white');
+            typeButton.css('background-color', 'red');
+            searchType = 1;
+
+            console.info(searchType);
+
+            break;
+
+
+    }
+}
+
 function showItems()
 {
     var $list = $("#equipmentListItems").empty();
@@ -47,6 +79,26 @@ function showItems()
 
 function search(query)
 {
+    var searchModel = { sTerm: query, sType: searchType }
+
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "api/Equipment",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(searchModel),
+        success: function (result) {
+            console.info(result);
+
+            currentList = result;
+            showItems();
+        }
+    });
+
+}
+
+/*
+function searchByItem(query) {
     var theQuery = JSON.stringify(query);
     $.ajax({
         type: "POST",
@@ -63,3 +115,4 @@ function search(query)
     });
 
 }
+*/

@@ -132,6 +132,7 @@
     </Compile>
     <Compile Include="Models\EquipmentType.cs" />
     <Compile Include="Models\ListItem.cs" />
+    <Compile Include="Models\Search.cs" />
     <Compile Include="Models\SerialisedEquipment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
