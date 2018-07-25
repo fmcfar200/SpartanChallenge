@@ -38,3 +38,4 @@ C:\SpartanChallenge\SpartanChallenge\bin\System.Web.Http.xml
 C:\SpartanChallenge\SpartanChallenge\bin\System.Web.Http.WebHost.xml
 C:\SpartanChallenge\SpartanChallenge\obj\Debug\SpartanChallenge.dll
 C:\SpartanChallenge\SpartanChallenge\obj\Debug\SpartanChallenge.pdb
+C:\SpartanChallenge\SpartanChallenge\obj\Debug\SpartanChallenge.csprojResolveAssemblyReference.cache

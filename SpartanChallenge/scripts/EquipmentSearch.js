@@ -1,4 +1,6 @@
 ﻿var currentList = {};
+var searchList = {};
+
 
 $(document).ready(function () {
     console.info("ready")
@@ -6,7 +8,7 @@ $(document).ready(function () {
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: "api/Equipment/",
+        url: "api/Equipment",
         success: function (result) {
             console.info("Success");
             currentList = result;
@@ -17,6 +19,15 @@ $(document).ready(function () {
             }
         }
     });
+
+
+    $("#searchBarId").keyup(function (event) {
+        if (event.keyCode == 13)
+        {
+            var idQuery = $("#searchBarId").val();
+            search(idQuery);
+        }
+     })
 });
 
 function showItems()
@@ -32,4 +43,23 @@ function showItems()
         $li.appendTo($list);
 
     }
+}
+
+function search(query)
+{
+    var theQuery = JSON.stringify(query);
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "api/Equipment",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(query),
+        success: function (result) {
+            console.info(result);
+
+            currentList = result;
+            showItems();
+        }
+    });
+
 }
