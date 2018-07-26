@@ -171,8 +171,5 @@ namespace SpartanChallenge.Controllers
 
         }
 
-
-        
-
     }
 }

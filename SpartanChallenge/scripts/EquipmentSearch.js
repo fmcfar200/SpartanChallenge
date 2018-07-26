@@ -24,14 +24,18 @@ $(document).ready(function () {
         }
     });
 
-
     $("#searchBarId").keyup(function (event) {
         if (event.keyCode == 13)
         {
             var idQuery = $("#searchBarId").val();
             search(idQuery);
         }
-     })
+    })
+
+    $("#searchButton").click(function () {
+        var idQuery = $("#searchBarId").val();
+        search(idQuery);
+    })
 });
 
 function selectSearchType(type)
@@ -43,7 +47,11 @@ function selectSearchType(type)
     {
         case 0:
             unitButton.css('background-color', 'red');
+            unitButton.css('color', 'white');
+
             typeButton.css('background-color', 'white');
+            typeButton.css('color', 'black');
+
             searchType = 0;
 
             console.info(searchType);
@@ -51,7 +59,11 @@ function selectSearchType(type)
 
         case 1:
             unitButton.css('background-color', 'white');
+            unitButton.css('color', 'black');
+
             typeButton.css('background-color', 'red');
+            typeButton.css('color', 'white');
+
             searchType = 1;
 
             console.info(searchType);
@@ -69,7 +81,7 @@ function showItems()
     for (var i = 0; i < currentList.length; i++)
     {
         var item = currentList[i];
-        var $li = $("<li>").html(item.UnitId + "<br />" + item.ItemId + "<br />" + item.Description);
+        var $li = $("<li>").html("<b>" + item.UnitId + "</b>" + "<br />" + item.ItemId + "<br />" + item.Description);
 
 
         $li.appendTo($list);
