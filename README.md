@@ -1,6 +1,10 @@
 # SpartanChallenge
 
-Additional frameworks include Jquery and JSON.NET.
+Implemented through ASP.NET Web API / Javascript and HTML
+
+Additional frameworks include:
+-Jquery
+-JSON.NET.
 
 Main functionality from the challenge document is complete.
 - server transforms the JSON data into models for individual units and types of items
